@@ -16,16 +16,10 @@ document.addEventListener('keydown', function(event) {
 
 class SpeedReader {
 
-    constructor(text, wpm, focus) {
-        this.text = text;
+    constructor(inputText, wpm, focusText) {
+        this.inputText = inputText;
         this.wpm = wpm;
-        this.focus = focus;
-        this.clear();
-    }
-
-    clear() {
-        this.text = '';
-        this.operation = undefined;
+        this.focusText = focusText;
     }
 
     backwards() {
@@ -33,7 +27,7 @@ class SpeedReader {
     }
 
     play() {
-        console.log('play pressed')
+        this.updateDisplay();
     }
 
     pause() {}
@@ -51,7 +45,7 @@ class SpeedReader {
             case "fast_rewind":
                 this.backwards();
                 break;
-            case "play_arrowPlay":
+            case "play_arrow":
                 this.play();
                 break;
             case "fast_forward":
@@ -69,19 +63,21 @@ class SpeedReader {
     }
 
     getWords(text) {
-        return this.text.split(" ");
+        return this.inputText.innerText.split(" ");
     }
 
     updateDisplay() {
-
+        this.focusText.innerText = this.getWords(this.inputText.value);
+        console.log(this.focusText.innerText);
     }
 }
 
 const operationButtons = document.querySelectorAll('[data-operation]');
-const inputText = document.querySelector('[data-textarea]');
-const wpm = document.querySelector('[data-wpm]');
+const inputText = document.getElementById('user-input');
+const wpm = document.getElementById('wpm');
+const focusText = document.querySelector('[data-focus]');
 
-const speedReader = new SpeedReader(inputText, wpm);
+const speedReader = new SpeedReader(inputText, wpm, focusText);
 
 operationButtons.forEach(operation => {
     operation.addEventListener('click', () => {
