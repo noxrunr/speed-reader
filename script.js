@@ -63,12 +63,11 @@ class SpeedReader {
     }
 
     getWords(text) {
-        return this.inputText.innerText.split(" ");
+        return text.split(" ");
     }
 
     updateDisplay() {
         this.focusText.innerText = this.getWords(this.inputText.value);
-        console.log(this.focusText.innerText);
     }
 }
 
@@ -82,6 +81,5 @@ const speedReader = new SpeedReader(inputText, wpm, focusText);
 operationButtons.forEach(operation => {
     operation.addEventListener('click', () => {
         speedReader.chooseOperation(operation.innerText);
-        speedReader.updateDisplay();
     })
 });
