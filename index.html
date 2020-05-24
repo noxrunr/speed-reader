@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Reader</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="speed-reader-grid">
+
+        <div data-focus class="focus"></div>
+
+        <button data-operation id="j" title='Press "J" to go backwards.'>
+            <i class="material-icons">
+                fast_rewind
+            </i>
+        </button>
+        <button data-operation class="span-two" id="k" title='Press "K" to pause/resume.'>
+            <i class="material-icons">
+                play_arrow
+            </i>Play
+        </button>
+        <button data-operation id="l" title='Press "L" to skip forward.'>
+            <i class="material-icons">
+                fast_forward
+            </i>
+        </button>
+
+        <button data-operation>-</button>
+        <input data-wpm class="span-two" placeholder="WPM"/>
+        <button data-operation>+</button>
+
+        <textarea data-textarea class="span-four"></textarea>
+
+    </div>
+</body>
+</html>

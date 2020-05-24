@@ -1,0 +1,64 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: whitesmoke;
+}
+
+.speed-reader-grid {
+    display: grid;
+    justify-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(5, 100px);
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
+    padding-top: 10%;
+}
+
+.speed-reader-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    background-color: rgb(192, 222, 237);
+    outline: none;
+    border: none;
+}
+
+.speed-reader-grid > button:hover {
+    background-color: whitesmoke;
+}
+
+.speed-reader-grid > input {
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: x-large;
+}
+
+.speed-reader-grid > textarea {
+    resize: vertical;
+    border: none;
+    outline: none;
+    padding: 15px;
+}
+
+.focus {
+    grid-column: 1 / -1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.span-four {
+    grid-column: span 4;
+}
