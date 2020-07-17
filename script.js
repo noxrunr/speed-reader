@@ -2,24 +2,30 @@ document.addEventListener('keydown', function(event) {
     switch(event.keyCode) {
         case 74:
             document.getElementById('j').click()
-            break;
+            break
         case 75:
             document.getElementById('k').click()
-            break;
+            break
         case 76:
             document.getElementById('l').click()
-            break;
+            break
+        case 38:
+            document.getElementById('up').click()
+            break
+        case 40: 
+            document.getElementById('down').click()
+            break
         default:
-            return;         
+            return         
     }
-});
+})
 
 class SpeedReader {
 
     constructor(inputText, wpm, focusText) {
-        this.inputText = inputText;
-        this.wpm = wpm;
-        this.focusText = focusText;
+        this.inputText = inputText
+        this.wpm = wpm
+        this.focusText = focusText
     }
 
     backwards() {
@@ -27,59 +33,73 @@ class SpeedReader {
     }
 
     play() {
-        this.updateDisplay();
+        this.updateDisplay()
     }
 
     pause() {}
 
     forwards() {
-        console.log('forwards pressed');
+        console.log('forwards pressed')
     }
 
-    incrementWpm() {}
+    incrementWpm() {
+        this.wpm.value++
+    }
 
-    decrementWpm() {}
+    decrementWpm() {
+        this.wpm.value--
+    }
 
     chooseOperation(operation) {
         switch(operation) {
-            case "fast_rewind":
-                this.backwards();
-                break;
-            case "play_arrow":
-                this.play();
-                break;
-            case "fast_forward":
-                this.forwards();
-                break;
-            case "-":  
-                this.decrementWpm();
-                break;
-            case "+":
-                this.incrementWpm();
-                break;
+            case 'fast_rewind':
+                this.backwards()
+                break
+            case 'play_arrow':
+                this.play()
+                break
+            case 'pause':
+                this.pause()
+                break    
+            case 'fast_forward':
+                this.forwards()
+                break
+            case '-':  
+                this.decrementWpm()
+                break
+            case '+':
+                this.incrementWpm()
+                break
             default:
-                return;                  
+                return                  
         }
     }
 
     getWords(text) {
-        return text.split(" ");
+        return text.split(' ')
     }
 
     updateDisplay() {
-        this.focusText.innerText = this.getWords(this.inputText.value);
+        const text = this.getWords(this.inputText.value)
+
+        text.forEach( (element, index, array) => {
+
+            setTimeout( () => {
+                this.focusText.innerText = element
+            }, (array.length / 1)  )
+        })
     }
 }
 
-const operationButtons = document.querySelectorAll('[data-operation]');
-const inputText = document.getElementById('user-input');
-const wpm = document.getElementById('wpm');
-const focusText = document.querySelector('[data-focus]');
+const operationButtons = document.querySelectorAll('[data-operation]')
+const inputText = document.getElementById('user-input')
+const wpm = document.getElementById('wpm')
+const focusText = document.querySelector('[data-focus]')
 
-const speedReader = new SpeedReader(inputText, wpm, focusText);
+const speedReader = new SpeedReader(inputText, wpm, focusText)
 
 operationButtons.forEach(operation => {
     operation.addEventListener('click', () => {
-        speedReader.chooseOperation(operation.innerText);
+        speedReader.chooseOperation(operation.innerText)
     })
-});
+})
