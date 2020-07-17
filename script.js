@@ -57,12 +57,28 @@ class SpeedReader {
         this.updateDisplay()
     }
     
-    backwards() {
-        console.log('backwards pressed')
+    backwards(skipStep) {
+        const text = this.getWordsCollection(this.inputText.value)
+
+        if ((this.anchorPoint - skipStep) <= 0) {
+            this.anchorPoint = 0
+            this.focusText.innerText = text[this.anchorPoint]
+        } else {
+            this.anchorPoint = this.anchorPoint - skipStep
+            this.focusText.innerText = text[this.anchorPoint]
+        }
     }
 
-    forwards() {
-        console.log('forwards pressed')
+    forwards(skipStep) {
+        const text = this.getWordsCollection(this.inputText.value)
+
+        if ((skipStep + this.anchorPoint) >= text.length) {
+            this.anchorPoint = text.length - 1
+            this.focusText.innerText = text[this.anchorPoint]
+        } else {
+            this.anchorPoint = this.anchorPoint + skipStep
+            this.focusText.innerText = text[this.anchorPoint]
+        }
     }
 
     incrementWpm() {
@@ -76,7 +92,7 @@ class SpeedReader {
     chooseOperation(operation) {
         switch(operation) {
             case 'fast_rewind':
-                this.backwards()
+                this.backwards(3)
                 break
             case 'play_arrow':
                 this.play()
@@ -85,7 +101,7 @@ class SpeedReader {
                 this.pause()
                 break    
             case 'fast_forward':
-                this.forwards()
+                this.forwards(3)
                 break
             case '-':  
                 this.decrementWpm()
