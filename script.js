@@ -1,4 +1,4 @@
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function(event) {    
     switch(event.keyCode) {
         case 74:
             document.getElementById('j').click()
@@ -21,6 +21,8 @@ document.addEventListener('keydown', function(event) {
 })
 
 class SpeedReader {
+    
+    isRunning
 
     constructor(inputText, wpm, focusText) {
         this.inputText = inputText
@@ -28,15 +30,35 @@ class SpeedReader {
         this.focusText = focusText
     }
 
+    renderPlayPauseButton(elementId) {
+        const button = document.getElementById(elementId)
+        const icon = document.createElement('i')
+        icon.classList.add('material-icons')
+
+        if (this.isRunning) {
+            icon.innerHTML = 'pause'
+        } else {
+            icon.innerHTML = 'play_arrow'
+        }
+
+        button.replaceChild(icon, button.children[0])
+    }
+    
+    play() {
+        this.isRunning = true
+        this.renderPlayPauseButton('k')
+        this.updateDisplay()
+    }
+    
+    pause() {
+        this.isRunning = false
+        this.renderPlayPauseButton('k')
+        this.updateDisplay()
+    }
+    
     backwards() {
         console.log('backwards pressed')
     }
-
-    play() {
-        this.updateDisplay()
-    }
-
-    pause() {}
 
     forwards() {
         console.log('forwards pressed')
@@ -75,18 +97,17 @@ class SpeedReader {
         }
     }
 
-    getWords(text) {
+    getWordsCollection(text) {
         return text.split(' ')
     }
 
     updateDisplay() {
-        const text = this.getWords(this.inputText.value)
+        const text = this.getWordsCollection(this.inputText.value)
 
         text.forEach( (element, index, array) => {
-
             setTimeout( () => {
                 this.focusText.innerText = element
-            }, (array.length / 1)  )
+            }, index * 500 )
         })
     }
 }
