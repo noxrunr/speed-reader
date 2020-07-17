@@ -133,8 +133,8 @@ class SpeedReader {
     }
 
     caluclateWPM() {
-        const text = this.getWordsCollection(this.inputText.value)
-        this.wpm.value = text.length / 1
+        const wordCount = this.getWordsCollection(this.inputText.value).length
+        this.wpm.value = wordCount / 1
     }
 
     reset() {
