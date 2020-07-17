@@ -23,6 +23,7 @@ document.addEventListener('keydown', function(event) {
 class SpeedReader {
     
     isRunning
+    anchorPoint = 0
 
     constructor(inputText, wpm, focusText) {
         this.inputText = inputText
@@ -101,14 +102,30 @@ class SpeedReader {
         return text.split(' ')
     }
 
-    updateDisplay() {
+    async updateDisplay() {
         const text = this.getWordsCollection(this.inputText.value)
 
-        text.forEach( (element, index, array) => {
-            setTimeout( () => {
-                this.focusText.innerText = element
-            }, index * 500 )
-        })
+        console.log('stopped', this.anchorPoint)
+
+        for (let i = this.anchorPoint; i < text.length; i++) {
+            if (this.isRunning) {
+                await this.sleep(this.wpm.value)
+                this.focusText.innerText = text[i]
+            } else {
+                this.anchorPoint = i
+                break
+            }
+            console.log(text[i], i, this.wpm.value)
+        }
+    }
+
+    reset() {
+        this.isRunning = false
+        this.anchorPoint = 0
+    }
+
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
 
