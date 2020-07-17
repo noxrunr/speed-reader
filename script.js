@@ -121,18 +121,20 @@ class SpeedReader {
     async updateDisplay() {
         const text = this.getWordsCollection(this.inputText.value)
 
-        console.log('stopped', this.anchorPoint)
-
         for (let i = this.anchorPoint; i < text.length; i++) {
             if (this.isRunning) {
-                await this.sleep(this.wpm.value * 60000)
+                await this.sleep(this.wpm.value)
                 this.focusText.innerText = text[i]
             } else {
                 this.anchorPoint = i
                 break
             }
-            console.log(text[i], i, this.wpm.value)
         }
+    }
+
+    caluclateWPM() {
+        const text = this.getWordsCollection(this.inputText.value)
+        this.wpm.value = text.length / 1
     }
 
     reset() {
@@ -151,6 +153,10 @@ const wpm = document.getElementById('wpm')
 const focusText = document.querySelector('[data-focus]')
 
 const speedReader = new SpeedReader(inputText, wpm, focusText)
+
+inputText.addEventListener('input', () => {
+    speedReader.caluclateWPM()
+})
 
 operationButtons.forEach(operation => {
     operation.addEventListener('click', () => {
