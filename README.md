@@ -10,10 +10,11 @@ Demo: [Click here!](https://htmlpreview.github.io/?https://github.com/spinsauce/
 
 TODO: 
 - [x] Functionality for words appearing in the appropriate box (one by one)
-- [ ] Formula for WPM
-- [ ] Functionality for going backwards and forwards through text
-- [ ] Functionality for increasing/decreasing WPM
-- [ ] Functionality for pause/play
+- [ ] Formula for WPM calculation
+- [x] Functionality for going backwards and forwards through text
+- [x] Functionality for increasing/decreasing WPM
+- [x] Functionality for pause/play
+- [ ] \(Optional) Enable user to input word skip amount
 - [ ] Add instructions
 - [ ] Improve code 
 - [ ] \(Optional) Make it media responsive

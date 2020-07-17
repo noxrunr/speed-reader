@@ -125,7 +125,7 @@ class SpeedReader {
 
         for (let i = this.anchorPoint; i < text.length; i++) {
             if (this.isRunning) {
-                await this.sleep(this.wpm.value)
+                await this.sleep(this.wpm.value * 60000)
                 this.focusText.innerText = text[i]
             } else {
                 this.anchorPoint = i
