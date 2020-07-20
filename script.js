@@ -125,7 +125,7 @@ class SpeedReader {
 
     increaseFocus(i) {
         const focus = document.getElementsByClassName('focus')[0]
-        const opacity = (i <= 7) ? (i) : 7;
+        const opacity = (i <= 8) ? (i) : 8;
         focus.style.boxShadow = `0 0 0 1000vmax rgba(0,0,0,.${opacity})`
         focus.style.transition = 'box-shadow 2000ms'
         focus.style.pointerEvents = 'none'
