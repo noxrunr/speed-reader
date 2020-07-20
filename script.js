@@ -1,25 +1,3 @@
-document.addEventListener('keydown', function(event) {    
-    switch(event.keyCode) {
-        case 74:
-            document.getElementById('j').click()
-            break
-        case 75:
-            document.getElementById('k').click()
-            break
-        case 76:
-            document.getElementById('l').click()
-            break
-        case 38:
-            document.getElementById('up').click()
-            break
-        case 40: 
-            document.getElementById('down').click()
-            break
-        default:
-            return         
-    }
-})
-
 class SpeedReader {
     
     isRunning
@@ -55,6 +33,12 @@ class SpeedReader {
         this.isRunning = false
         this.renderPlayPauseButton('k')
         this.updateDisplay()
+    }
+
+    stop() {
+        this.removeFocus()
+        this.reset()
+        this.renderPlayPauseButton('k')
     }
     
     backwards(skipStep) {
@@ -123,18 +107,35 @@ class SpeedReader {
 
         for (let i = this.anchorPoint; i < text.length; i++) {
             if (this.isRunning) {
-                await this.sleep(this.wpm.value)
+                await this.sleep(this.calculateMiliseconds())
+                this.increaseFocus(i)
                 this.focusText.innerText = text[i]
             } else {
                 this.anchorPoint = i
+                this.removeFocus()
                 break
             }
         }
     }
 
-    caluclateWPM() {
+    calculateMiliseconds() {
         const wordCount = this.getWordsCollection(this.inputText.value).length
-        this.wpm.value = wordCount / 1
+        return 60000 / this.wpm.value 
+    }
+
+    increaseFocus(i) {
+        const focus = document.getElementsByClassName('focus')[0]
+        const opacity = (i <= 7) ? (i) : 7;
+        focus.style.boxShadow = `0 0 0 1000vmax rgba(0,0,0,.${opacity})`
+        focus.style.transition = 'box-shadow 2000ms'
+        focus.style.pointerEvents = 'none'
+        focus.style.position = 'relative'
+    }
+
+    removeFocus() {
+        const focus = document.getElementsByClassName('focus')[0]
+        focus.style.boxShadow = 'none'
+        focus.style.transition = 'none'
     }
 
     reset() {
@@ -154,8 +155,29 @@ const focusText = document.querySelector('[data-focus]')
 
 const speedReader = new SpeedReader(inputText, wpm, focusText)
 
-inputText.addEventListener('input', () => {
-    speedReader.caluclateWPM()
+document.addEventListener('keydown', function(event) {  
+    switch(event.keyCode) {
+        case 27:
+            speedReader.stop()
+            break
+        case 74:
+            document.getElementById('j').click()
+            break
+        case 75:
+            document.getElementById('k').click()
+            break
+        case 76:
+            document.getElementById('l').click()
+            break
+        case 38:
+            document.getElementById('up').click()
+            break
+        case 40: 
+            document.getElementById('down').click()
+            break
+        default:
+            return         
+    }
 })
 
 operationButtons.forEach(operation => {

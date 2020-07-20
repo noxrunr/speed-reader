@@ -91,6 +91,33 @@ body {
     grid-column: span 4;
 }
 
+#instructions {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0 25px 25px 0;
+    border-radius: 50%;
+    background-color: #3f51b5;
+    border: none;
+    color: white;
+    transition: border 0.5s ease;
+    transition: background-color 0.5s ease;
+    height: 100px;
+    width: 100px;
+    font-size: xx-large;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+    cursor: pointer;
+}
+
+#instructions:hover {
+    background-color: white;
+    color: #3f51b5;
+}
+  
+#instructions:focus {
+    outline: none;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
