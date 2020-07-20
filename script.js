@@ -150,12 +150,21 @@ class SpeedReader {
     sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+
+    showInstructions() {
+        const instructions = document.getElementById('instructions')
+        instructions.classList.toggle('show')
+
+        const info = document.getElementById('info')
+        info.classList.toggle('toggle')
+    }
 }
 
 const operationButtons = document.querySelectorAll('[data-operation]')
 const inputText = document.getElementById('user-input')
 const wpm = document.getElementById('wpm')
 const focusText = document.querySelector('[data-focus]')
+const instructionsButton = document.getElementById('instructions')
 
 const speedReader = new SpeedReader(inputText, wpm, focusText)
 
@@ -188,4 +197,8 @@ operationButtons.forEach(operation => {
     operation.addEventListener('click', () => {
         speedReader.chooseOperation(operation.innerText)
     })
+})
+
+instructionsButton.addEventListener('click', () => {
+    speedReader.showInstructions()
 })

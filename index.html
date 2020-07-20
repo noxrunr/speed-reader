@@ -13,7 +13,9 @@
 <body>
     <div class='speed-reader-grid'>
 
-        <div data-focus class='focus'></div>
+        <h1 class='span-four'>Speed Reader</h1>
+
+        <div data-focus class='focus span-four'></div>
 
         <button data-operation id='j' title="Press 'J' to go backwards.">
             <i class='material-icons'>
@@ -39,6 +41,24 @@
 
     </div>
 
-    <button id='instructions'>&#9432</button>
+    <div id='instructions'>
+
+        <h1>Instructions</h1>
+
+        <h4>Insert your text into the textarea box. Once done, press play to watch words from the
+              text appear on the screen. Increase or decrease WPM (Words Per Minute) number to make words
+            appear faster or slower. Also, you can skip through the words with forwards or backwards buttons.
+        </h4>
+        <br>
+        <p><strong>Keyboard shortcuts:</strong></p>
+        <p><strong>[K]</strong> - play/pause</p>
+        <p><strong>[J/K]</strong> - skip backward/forward by 3 words</p>
+        <p><strong>[Up/Down]</strong> - increase/decrease WPM by 1</p>
+        <p><strong>[ESC]</strong> - stop</p>
+
+        <button id='info'></button>
+
+    </div>
+
 </body>
 </html>
