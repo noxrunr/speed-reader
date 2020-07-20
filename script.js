@@ -99,7 +99,7 @@ class SpeedReader {
     }
 
     getWordsCollection(text) {
-        return text.split(' ')
+        return text.replace(/[\r\n]+/g, ' ').split(' ')
     }
 
     async updateDisplay() {
