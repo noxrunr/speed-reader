@@ -15,7 +15,7 @@ TODO:
 - [x] Functionality for increasing/decreasing WPM
 - [x] Functionality for pause/play
 - [x] Gray out all elements that's not in focus
-- [ ] Add instructions
+- [x] Add instructions
 - [ ] Improve code 
 - [ ] \(Optional) Enable user to input word skip amount
 - [ ] \(Optional) Make it media responsive
