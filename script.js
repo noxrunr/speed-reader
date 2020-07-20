@@ -110,7 +110,11 @@ class SpeedReader {
                 await this.sleep(this.calculateMiliseconds())
                 this.increaseFocus(i)
                 this.focusText.innerText = text[i]
-            } else {
+                if (i === (text.length - 1)) {
+                    this.stop()
+                    break
+                }
+            }  else {
                 this.anchorPoint = i
                 this.removeFocus()
                 break
